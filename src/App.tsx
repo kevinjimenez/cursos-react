@@ -9,7 +9,7 @@ import {CarouselItem} from "./components/CarouselItem/CarouselItem";
 import {Footer} from "./components/Footer/Footer";
 import {useInicialState} from "./hooks/useInicialState";
 
-const API = 'https://pokeapi.co/api/v2/pokemon';
+const API = 'https://pokeapi.co/api/v2/pokemon?limit=10&offset=200';
 
 function App() {
 
@@ -39,9 +39,10 @@ function App() {
             <Categorias title='Mis pokemos'>
                 <Carousel>
                     {
-                        inicialState.map((pokemon: any) =>
+                        inicialState.map((pokemon: any, indice: number) =>
                             <CarouselItem
                                 key={pokemon.name}
+                                indice={indice}
                                 {...pokemon}/>
                         )
                     }
@@ -52,9 +53,10 @@ function App() {
             <Categorias title='Tendencias'>
                 <Carousel>
                     {
-                        inicialState.map((pokemon: any) =>
+                        inicialState.map((pokemon: any, indice: number) =>
                             <CarouselItem
                                 key={pokemon.name}
+                                indice={indice}
                                 {...pokemon}/>
                         )
                     }
@@ -64,9 +66,10 @@ function App() {
             <Categorias title='Originasles de Platzi Video'>
                 <Carousel>
                     {
-                        inicialState.map((pokemon: any) =>
+                        inicialState.map((pokemon: any, indice: number) =>
                             <CarouselItem
                                 key={pokemon.name}
+                                indice={indice}
                                 {...pokemon}/>
                         )
                     }

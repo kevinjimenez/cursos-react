@@ -3,11 +3,13 @@ import './CarouselItem.scss'
 import playIcon from '../../assets/static/play-icon.png'
 import plusIcon from '../../assets/static/plus-icon.png'
 
-function CarouselItem({name, url}: any) {
+function CarouselItem({name, url, indice}: any) {
+    console.log(indice)
+    const urlImgPoke = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${indice + 1}.png`;
     return (
         <div className="carousel-item">
             <img className="carousel-item__img"
-                 src="https://images.pexels.com/photos/789822/pexels-photo-789822.jpeg?auto=format%2Ccompress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                 src={urlImgPoke}
                  alt=""/>
             <div className="carousel-item__details">
                 <div>

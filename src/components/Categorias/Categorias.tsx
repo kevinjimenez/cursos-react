@@ -3,7 +3,7 @@ import './Categorias.scss'
 
 function Categorias({children, title}: any) {
     return(
-        <div className='categories'>
+        <div>
             <h3 className='categories__title'>
                 {title}
             </h3>
