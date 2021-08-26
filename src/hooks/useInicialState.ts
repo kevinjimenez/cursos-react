@@ -2,8 +2,6 @@ import React from "react";
 
 function useInicialState(API: string) {
     const [videos, setVideos] = React.useState<any>([]);
-
-
     React.useEffect(() => {
         fetch(API)
             .then(response => response.json())
