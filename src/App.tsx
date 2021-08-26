@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import {Header} from "./components/Header/Header";
 import './App.scss'
@@ -7,19 +7,69 @@ import {Categorias} from "./components/Categorias/Categorias";
 import {Carousel} from "./components/Carousel/Carousel";
 import {CarouselItem} from "./components/CarouselItem/CarouselItem";
 import {Footer} from "./components/Footer/Footer";
+import {useInicialState} from "./hooks/useInicialState";
+
+const API = 'https://pokeapi.co/api/v2/pokemon';
 
 function App() {
+
+    // const [videos, setVideos] = React.useState<any>({});
+    //
+    //
+    // React.useEffect(() => {
+    //     fetch('https://pokeapi.co/api/v2/pokemon')
+    //         .then(response => response.json())
+    //         .then(data => {
+    //             console.log('data de la api')
+    //             console.log(data)
+    //             setVideos(data)
+    //         })
+    // }, [])
+
+    const inicialState = useInicialState(API)
+
+    console.log('use state')
+    console.log(inicialState)
+
     return (
         <div className="App">
             <Header/>
             <Search/>
-            <Categorias>
+            {inicialState?.length > 0 &&
+            <Categorias title='Mis pokemos'>
                 <Carousel>
-                    <CarouselItem/>
-                    <CarouselItem/>
-                    <CarouselItem/>
-                    <CarouselItem/>
-                    <CarouselItem/>
+                    {
+                        inicialState.map((pokemon: any) =>
+                            <CarouselItem
+                                key={pokemon.name}
+                                {...pokemon}/>
+                        )
+                    }
+                </Carousel>
+            </Categorias>
+            }
+
+            <Categorias title='Tendencias'>
+                <Carousel>
+                    {
+                        inicialState.map((pokemon: any) =>
+                            <CarouselItem
+                                key={pokemon.name}
+                                {...pokemon}/>
+                        )
+                    }
+                </Carousel>
+            </Categorias>
+
+            <Categorias title='Originasles de Platzi Video'>
+                <Carousel>
+                    {
+                        inicialState.map((pokemon: any) =>
+                            <CarouselItem
+                                key={pokemon.name}
+                                {...pokemon}/>
+                        )
+                    }
                 </Carousel>
             </Categorias>
             <Footer/>
