@@ -33,7 +33,7 @@ function App() {
 
     return (
         <div className="App">
-            <Header/>
+            {/*<Header/>*/}
             <Search/>
             {inicialState?.length > 0 &&
             <Categorias title='Mis pokemos'>
@@ -75,7 +75,7 @@ function App() {
                     }
                 </Carousel>
             </Categorias>
-            <Footer/>
+            {/*<Footer/>*/}
         </div>
     );
 }
