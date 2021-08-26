@@ -6,6 +6,7 @@ import {Search} from "./components/Search/Search";
 import {Categorias} from "./components/Categorias/Categorias";
 import {Carousel} from "./components/Carousel/Carousel";
 import {CarouselItem} from "./components/CarouselItem/CarouselItem";
+import {Footer} from "./components/Footer/Footer";
 
 function App() {
     return (
@@ -21,7 +22,7 @@ function App() {
                     <CarouselItem/>
                 </Carousel>
             </Categorias>
-
+            <Footer/>
         </div>
     );
 }
