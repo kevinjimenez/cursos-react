@@ -8,7 +8,7 @@ function Button(props) {
     setAdd(count);
   };
 
-  return [<p>{add}</p>, <button onClick={addOne}>{props.nombreBoton}</button>];
+  return [<p>{add}</p>, <button className='btn btn-warning' onClick={addOne}>{props.nombreBoton}</button>];
 }
 
 export { Button };
