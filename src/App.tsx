@@ -32,7 +32,7 @@ function App() {
     console.log(inicialState)
 
     return (
-        <div className="App">
+        <>
             {/*<Header/>*/}
             <Search/>
             {inicialState?.length > 0 &&
@@ -76,7 +76,7 @@ function App() {
                 </Carousel>
             </Categorias>
             {/*<Footer/>*/}
-        </div>
+        </>
     );
 }
 

@@ -1,5 +1,8 @@
 import React from "react";
 import './Register.scss'
+import {
+    Link
+} from "react-router-dom";
 
 function Register() {
     return(
@@ -27,9 +30,9 @@ function Register() {
                     />
                     <button className="button">Registrarme</button>
                 </form>
-                <a href="/login">
+                <Link to="/login">
                     Iniciar sesión
-                </a>
+                </Link>
             </section>
         </section>
     )
