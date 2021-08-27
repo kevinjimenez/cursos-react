@@ -9,7 +9,6 @@ import {
 function Header() {
     return (
         <header className="header">
-
             <Link to='/'>
                 <img
                     className="header__img"

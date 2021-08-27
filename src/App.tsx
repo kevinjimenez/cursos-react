@@ -8,8 +8,9 @@ import {Carousel} from "./components/Carousel/Carousel";
 import {CarouselItem} from "./components/CarouselItem/CarouselItem";
 import {Footer} from "./components/Footer/Footer";
 import {useInicialState} from "./hooks/useInicialState";
+// import {connect} from "react-redux";
 
-const API = 'https://pokeapi.co/api/v2/pokemon?limit=10&offset=200';
+const API = 'https://pokeapi.co/api/v2/pokemon?limit=15&offset=200';
 
 function App() {
 
@@ -35,14 +36,13 @@ function App() {
         <>
             {/*<Header/>*/}
             <Search/>
-            {inicialState?.length > 0 &&
+            {inicialState.misPokemon.length > 0 &&
             <Categorias title='Mis pokemos'>
                 <Carousel>
                     {
-                        inicialState.map((pokemon: any, indice: number) =>
+                        inicialState.misPokemon.map((pokemon: any) =>
                             <CarouselItem
                                 key={pokemon.name}
-                                indice={indice}
                                 {...pokemon}/>
                         )
                     }
@@ -53,10 +53,9 @@ function App() {
             <Categorias title='Tendencias'>
                 <Carousel>
                     {
-                        inicialState.map((pokemon: any, indice: number) =>
+                        inicialState.tendencias.map((pokemon: any) =>
                             <CarouselItem
                                 key={pokemon.name}
-                                indice={indice}
                                 {...pokemon}/>
                         )
                     }
@@ -66,10 +65,9 @@ function App() {
             <Categorias title='Originasles de Platzi Video'>
                 <Carousel>
                     {
-                        inicialState.map((pokemon: any, indice: number) =>
+                        inicialState.pokemons.map((pokemon: any) =>
                             <CarouselItem
                                 key={pokemon.name}
-                                indice={indice}
                                 {...pokemon}/>
                         )
                     }
@@ -81,3 +79,12 @@ function App() {
 }
 
 export default App;
+// redux
+// const mapStateProps = (state: any) => {
+//     return {
+//         myList: [],
+//         trend: [],
+//         original: []
+//     }
+// } // solo traes los daos q se usan
+// export default connect(mapStateProps, null)(App)
