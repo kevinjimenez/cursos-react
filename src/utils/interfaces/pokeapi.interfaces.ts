@@ -1,5 +1,7 @@
 export interface PokeapiInterfaces {
-    misPokemon: [],
-    tendencias: [],
-    pokemons: []
+    user?: any,
+    playing?: any,
+    misPokemon?: any[],
+    tendencias?: any[],
+    pokemons?: any[]
 }

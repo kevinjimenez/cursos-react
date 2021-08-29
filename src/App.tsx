@@ -5,14 +5,15 @@ import './App.scss'
 import {Search} from "./components/Search/Search";
 import {Categorias} from "./components/Categorias/Categorias";
 import {Carousel} from "./components/Carousel/Carousel";
-import {CarouselItem} from "./components/CarouselItem/CarouselItem";
+import CarouselItem from "./components/CarouselItem/CarouselItem";
 import {Footer} from "./components/Footer/Footer";
 import {useInicialState} from "./hooks/useInicialState";
-// import {connect} from "react-redux";
+import { connect } from 'react-redux';
+import { PokeapiInterfaces } from './utils/interfaces/pokeapi.interfaces';
 
 const API = 'https://pokeapi.co/api/v2/pokemon?limit=15&offset=200';
 
-function App() {
+function App(props: any) {
 
     // const [videos, setVideos] = React.useState<any>({});
     //
@@ -27,20 +28,20 @@ function App() {
     //         })
     // }, [])
 
-    const inicialState = useInicialState(API)
+    // const inicialState = useInicialState(API)
 
-    console.log('use state')
-    console.log(inicialState)
+    // console.log('use state')
+    // console.log(inicialState)
 
     return (
         <>
             {/*<Header/>*/}
             <Search/>
-            {inicialState.misPokemon.length > 0 &&
+            {props.misPokemon.length > 0 &&
             <Categorias title='Mis pokemos'>
                 <Carousel>
                     {
-                        inicialState.misPokemon.map((pokemon: any) =>
+                        props.misPokemon.map((pokemon: any) =>
                             <CarouselItem
                                 key={pokemon.name}
                                 {...pokemon}/>
@@ -53,7 +54,7 @@ function App() {
             <Categorias title='Tendencias'>
                 <Carousel>
                     {
-                        inicialState.tendencias.map((pokemon: any) =>
+                        props.tendencias.map((pokemon: any) =>
                             <CarouselItem
                                 key={pokemon.name}
                                 {...pokemon}/>
@@ -65,7 +66,7 @@ function App() {
             <Categorias title='Originasles de Platzi Video'>
                 <Carousel>
                     {
-                        inicialState.pokemons.map((pokemon: any) =>
+                        props.pokemons.map((pokemon: any) =>
                             <CarouselItem
                                 key={pokemon.name}
                                 {...pokemon}/>
@@ -78,13 +79,13 @@ function App() {
     );
 }
 
-export default App;
+// export default App;
 // redux
-// const mapStateProps = (state: any) => {
-//     return {
-//         myList: [],
-//         trend: [],
-//         original: []
-//     }
-// } // solo traes los daos q se usan
-// export default connect(mapStateProps, null)(App)
+const mapStateToProps = (state: PokeapiInterfaces) => {
+    return {
+        misPokemon: state.misPokemon,
+        tendencias: state.tendencias,
+        pokemons: state.pokemons
+    }
+} // solo traes los daos q se usan
+export default connect(mapStateToProps, null)(App)
