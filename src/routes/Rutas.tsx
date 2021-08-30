@@ -9,7 +9,7 @@ import Login from "../components/Login/Login";
 import Register from "../components/Register/Register";
 import {NotFound} from "../components/NotFound/NotFound";
 import {Layout} from "../components/Layout/Layout";
-import {Player} from "../components/Player/Player";
+import Player from "../components/Player/Player";
 
 function Rutas() {
     return (

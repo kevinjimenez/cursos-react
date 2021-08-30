@@ -19,19 +19,27 @@ const reducer = (state: any, action: any) => {
         case "LOGIN_REQUEST":
             return {
                 ...state,
-                user:action.payload,
+                user: action.payload,
             };
 
         case "LOOUT_REQUEST":
             return {
                 ...state,
-                user:action.payload,
+                user: action.payload,
             };
 
         case "REGISTER_REQUEST":
             return {
                 ...state,
-                user:action.payload,
+                user: action.payload,
+            };
+
+        case "GET_VIDEO_SOURCE":
+            return {
+                ...state,
+                playing: state.tendencias.find((item: any) => item.name === action.payload)
+                    || state.pokemons.find((item: any) => item.name === action.payload)
+                    || []
             };
 
         default:
