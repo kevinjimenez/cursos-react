@@ -44,7 +44,9 @@ function App(props: any) {
                         props.misPokemon.map((pokemon: any) =>
                             <CarouselItem
                                 key={pokemon.name}
-                                {...pokemon}/>
+                                {...pokemon}
+                                isList
+                            />
                         )
                     }
                 </Carousel>
