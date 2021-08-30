@@ -37,7 +37,7 @@ function App(props: any) {
         <>
             <Header/>
             {/*<Header/>*/}
-            <Search/>
+            <Search isHome/>
             {props.misPokemon.length > 0 &&
             <Categorias title='Mis pokemos'>
                 <Carousel>
