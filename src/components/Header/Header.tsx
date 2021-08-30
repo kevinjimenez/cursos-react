@@ -5,8 +5,14 @@ import userIcon from '../../assets/static/user-icon.png'
 import {
     Link
 } from "react-router-dom";
+import {connect} from "react-redux";
+import {Gravatar} from "../../utils/gravatar";
 
-function Header() {
+function Header(props: any) {
+
+    const {user} = props;
+    const hasUser = Object.keys(user).length > 0;
+
     return (
         <header className="header">
             <Link to='/'>
@@ -18,7 +24,12 @@ function Header() {
             </Link>
             <div className="header__menu">
                 <div className="header__menu--profile">
-                    <img src={userIcon} alt=""/>
+                    {
+                        hasUser ?
+                            <img src={Gravatar(props.user.email)} alt=""/>
+                            :
+                            <img src={userIcon} alt=""/>
+                    }
                     <p>Perfil</p>
                 </div>
                 <ul>
@@ -34,4 +45,10 @@ function Header() {
     )
 }
 
-export {Header}
+const mapStateToProps = (state: any) => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps, null)(Header)

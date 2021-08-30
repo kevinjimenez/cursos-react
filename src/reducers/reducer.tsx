@@ -15,6 +15,13 @@ const reducer = (state: any, action: any) => {
                     (item: any) => item.name !== action.payload
                 ),
             };
+
+        case "LOGIN_REQUEST":
+            return {
+                ...state,
+                user:action.payload,
+            };
+
         default:
             return state;
     }

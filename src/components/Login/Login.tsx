@@ -5,24 +5,51 @@ import twitterIcon from '../../assets/static/twitter-icon.png'
 import {
     Link
 } from "react-router-dom";
+import {connect} from "react-redux";
+import {loginRequest} from "../../actions/actions";
 
-function Login() {
+function Login(props: any) {
+
+    const [form, setForm] = React.useState({
+        email: '',
+        // password: ''
+    })
+
+    const handlerInput = (event: any) => {
+        setForm(
+            {
+                ...form,
+                [event.target.name]: event.target.value
+            }
+        )
+    }
+
+    const handlerSubmit = (event: any) => {
+        event.preventDefault();
+        console.log(form)
+        props.loginRequest(form)
+        props.history.push('/')
+    }
+
+
     return (
         <section className="login">
             <section className="login__container">
                 <h2>Inicia sesión</h2>
-                <form className="login__container--form">
+                <form className="login__container--form" onSubmit={handlerSubmit}>
                     <input
                         name="email"
                         className="input"
                         type="text"
                         placeholder="Correo"
+                        onChange={handlerInput}
                     />
                     <input
                         name="password"
                         className="input"
                         type="password"
                         placeholder="Contraseña"
+                        onChange={handlerInput}
                     />
                     <button className="button">Iniciar sesión</button>
                     <div className="login__container--remember-me">
@@ -47,4 +74,9 @@ function Login() {
     )
 }
 
-export {Login}
+const mapDispatchToProps = {
+    loginRequest
+}
+
+// export {Login}
+export default connect(null, mapDispatchToProps)(Login)

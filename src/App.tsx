@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {Header} from "./components/Header/Header";
+import Header from "./components/Header/Header";
 import './App.scss'
 import {Search} from "./components/Search/Search";
 import {Categorias} from "./components/Categorias/Categorias";
