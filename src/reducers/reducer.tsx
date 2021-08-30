@@ -7,6 +7,14 @@ const reducer = (state: any, action: any) => {
         ...state,
         misPokemon: [...state.misPokemon, action.payload],
       };
+
+    case "DELETE_FAVORITE":      
+      return {
+        ...state,
+        misPokemon: state.misPokemon.filter(
+          (item: any) => item.name === action.payload
+        ),
+      };
     default:
       return state;
   }
