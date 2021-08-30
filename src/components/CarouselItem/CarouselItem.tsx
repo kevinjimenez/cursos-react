@@ -5,6 +5,7 @@ import playIcon from "../../assets/static/play-icon.png";
 import plusIcon from "../../assets/static/plus-icon.png";
 import deleteIcon from "../../assets/static/remove-icon.png";
 import {setFavorite, deleteFavorite} from "../../actions/actions";
+import {Link} from "react-router-dom";
 
 function CarouselItem(props: any) {
     const {name, url, img, isList} = props;
@@ -27,11 +28,13 @@ function CarouselItem(props: any) {
             <img className="carousel-item__img" src={img} alt=""/>
             <div className="carousel-item__details">
                 <div>
-                    <img
-                        className="carousel-item__details--img"
-                        src={playIcon}
-                        alt="Play Icon"
-                    />
+                    <Link to={`/player/${name}`}>
+                        <img
+                            className="carousel-item__details--img"
+                            src={playIcon}
+                            alt="Play Icon"
+                        />
+                    </Link>
                     {isList ?
                         <img
                             className="carousel-item__details--img"
