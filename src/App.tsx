@@ -35,6 +35,7 @@ function App(props: any) {
 
     return (
         <>
+            <Header/>
             {/*<Header/>*/}
             <Search/>
             {props.misPokemon.length > 0 &&

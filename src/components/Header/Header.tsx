@@ -5,13 +5,16 @@ import userIcon from '../../assets/static/user-icon.png'
 import {
     Link
 } from "react-router-dom";
+import
+    classNames
+ from "classnames";
 import {connect} from "react-redux";
 import {Gravatar} from "../../utils/gravatar";
 import {logoutRequest} from "../../actions/actions";
 
 function Header(props: any) {
 
-    const {user} = props;
+    const {user, isLoggin, isRegister} = props;
     const hasUser = Object.keys(user).length > 0;
 
     const handlerLogout = () => {
@@ -19,8 +22,13 @@ function Header(props: any) {
         props.logoutRequest({})
     }
 
+    const headerClass = classNames('header', {
+        isLoggin,
+        isRegister
+    })
+
     return (
-        <header className="header">
+        <header className={headerClass}>
             <Link to='/'>
                 <img
                     className="header__img"
