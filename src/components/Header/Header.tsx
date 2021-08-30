@@ -7,11 +7,17 @@ import {
 } from "react-router-dom";
 import {connect} from "react-redux";
 import {Gravatar} from "../../utils/gravatar";
+import {logoutRequest} from "../../actions/actions";
 
 function Header(props: any) {
 
     const {user} = props;
     const hasUser = Object.keys(user).length > 0;
+
+    const handlerLogout = () => {
+        // reiniciar estado
+        props.logoutRequest({})
+    }
 
     return (
         <header className="header">
@@ -33,12 +39,26 @@ function Header(props: any) {
                     <p>Perfil</p>
                 </div>
                 <ul>
-                    <li>
-                        <a href="/">Cuenta</a>
-                    </li>
-                    <li>
-                        <Link to="/login">Login</Link>
-                    </li>
+
+                    {
+                        hasUser ?
+                            <li>
+                                <a href="/">{user.name}</a>
+                            </li>
+                            : null
+                    }
+
+                    {
+                        hasUser ?
+                            <li>
+                                <a href='#logout' onClick={handlerLogout}>Cerrar Sesion</a>
+                            </li>
+                            :
+                            <li>
+                                <Link to="/login">Iniciar Sesion</Link>
+                            </li>
+                    }
+
                 </ul>
             </div>
         </header>
@@ -51,4 +71,8 @@ const mapStateToProps = (state: any) => {
     }
 }
 
-export default connect(mapStateToProps, null)(Header)
+const mapDispatchToProps = {
+    logoutRequest
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header)

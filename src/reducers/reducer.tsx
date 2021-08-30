@@ -22,6 +22,12 @@ const reducer = (state: any, action: any) => {
                 user:action.payload,
             };
 
+        case "LOOUT_REQUEST":
+            return {
+                ...state,
+                user:action.payload,
+            };
+
         default:
             return state;
     }
