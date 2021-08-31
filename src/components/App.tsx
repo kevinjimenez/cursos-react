@@ -15,10 +15,18 @@ function App() {
   const [data, setData] = React.useState(
     [
       {
-        code: 'haha',
+        id: 1,
+        gender: 'haha',
         name: '',
-        category: '',
-        quantity: ''
+        image: '',
+        species: '',
+        status: '',
+        location: {
+          name: ''
+        },
+        origin: {
+          name: ''
+        }
       }
     ]
   )
@@ -26,23 +34,32 @@ function App() {
     (async () => {
       const respuesta = await axios.get('https://rickandmortyapi.com/api/character')
       console.log(respuesta);
-      
+      setData(respuesta.data.results)
     })()    
-  
   }, [])
 
   console.log(data);
-  
+
+  const columns = [
+    {field: 'image', header: 'Code'},
+    {field: 'name', header: 'Name'},
+    {field: 'gender', header: 'Category'},
+    {field: 'species', header: 'Quantity'},
+    {field: 'status', header: 'Quantity'}
+];
+
+  const dynamicColumns = columns.map((col,i) => {
+    console.log('col.field');
+    console.log(col.field);
+    return <Column key={col.field} field={col.field} header={col.header} />;
+});
 
   return (
     <>
       <div>
         <div className="card">
           <DataTable value={data}>
-            <Column field="code" header="Code"></Column>
-            <Column field="name" header="Name"></Column>
-            <Column field="category" header="Category"></Column>
-            <Column field="quantity" header="Quantity"></Column>
+           {dynamicColumns}
           </DataTable>
         </div>
       </div>
