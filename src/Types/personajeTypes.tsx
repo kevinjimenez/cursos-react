@@ -1,0 +1,1 @@
+export const TRAER_TODOS = 'GET_PERSONAJES';

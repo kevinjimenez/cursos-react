@@ -13,6 +13,14 @@ function Personajes(props: any) {
         return <img src={rowData.image} alt="" width='60%'/>
     }
 
+    const handlerAccion = (data: any) => {
+        console.log(data)
+    }
+
+    const accionTabla = (rowData: any) => {
+        return <button className='btn btn-primary' onClick={()=> handlerAccion(rowData)}> accion </button>
+    }
+
     console.log(props)
 
     return (
@@ -30,6 +38,7 @@ function Personajes(props: any) {
                         <Column field="gender" header="Genero"/>
                         <Column field="species" header="Especie"/>
                         <Column field="status" header="Estado"/>
+                        <Column field="id" header="Acciones" body={accionTabla}/>
                     </DataTable>
                 </div>
             </div>
