@@ -5,32 +5,7 @@ import {connect} from "react-redux";
 import * as personajeActions from '../../actions/personajeActions'
 
 function Personajes(props: any) {
-
-    // const [personajes, setPersonajes] = React.useState(
-    //     [
-    //         {
-    //             id: 1,
-    //             gender: 'haha',
-    //             name: '',
-    //             image: '',
-    //             species: '',
-    //             status: '',
-    //             location: {
-    //                 name: ''
-    //             },
-    //             origin: {
-    //                 name: ''
-    //             }
-    //         }
-    //     ]
-    // )
-
     React.useEffect(() => {
-        // (async () => {
-        //     const respuesta = await axios.get('https://rickandmortyapi.com/api/character')
-        //     console.log(respuesta);
-        //     setPersonajes(respuesta.data.results)
-        // })()
         props.traerTodos();
     }, [])
 
