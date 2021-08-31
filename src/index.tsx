@@ -3,11 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {Rutas} from "./routes/Rutas";
+import {createStore} from "redux";
+import reducers from "./reducers/reducers";
+import {Provider} from "react-redux";
+
+const store = createStore(
+    reducers,
+    {}
+)
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Rutas />
-  </React.StrictMode>,
+    <Provider store={store}>
+        <Rutas />
+    </Provider>,
   document.getElementById('root')
 );
 

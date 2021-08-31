@@ -2,8 +2,10 @@ import React from "react";
 import axios from "axios";
 import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
+import {connect} from "react-redux";
+import personajeReducer from "../../reducers/personajeReducer";
 
-function Personajes() {
+function Personajes(props: any) {
 
     const [personajes, setPersonajes] = React.useState(
         [
@@ -23,6 +25,7 @@ function Personajes() {
             }
         ]
     )
+
     React.useEffect(() => {
         (async () => {
             const respuesta = await axios.get('https://rickandmortyapi.com/api/character')
@@ -32,10 +35,10 @@ function Personajes() {
     }, [])
 
     const imagesTabla = (rowData: any) => {
-        console.log('rowData')
-        console.log(rowData)
         return <img src={rowData.image} alt="" width='60%'/>
     }
+
+    console.log(props)
 
     return (
         <div className="row">
@@ -60,4 +63,8 @@ function Personajes() {
     )
 }
 
-export {Personajes}
+const mapStateToPros = (state: any)=>{
+    return state.personajeReducer
+}
+
+export default connect(mapStateToPros, null)(Personajes)
