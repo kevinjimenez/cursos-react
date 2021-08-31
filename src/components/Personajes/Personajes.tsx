@@ -3,7 +3,7 @@ import axios from "axios";
 import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
 import {connect} from "react-redux";
-import personajeReducer from "../../reducers/personajeReducer";
+import * as personajeActions from '../../actions/personajeActions'
 
 function Personajes(props: any) {
 
@@ -27,11 +27,12 @@ function Personajes(props: any) {
     )
 
     React.useEffect(() => {
-        (async () => {
-            const respuesta = await axios.get('https://rickandmortyapi.com/api/character')
-            console.log(respuesta);
-            setPersonajes(respuesta.data.results)
-        })()
+        // (async () => {
+        //     const respuesta = await axios.get('https://rickandmortyapi.com/api/character')
+        //     console.log(respuesta);
+        //     setPersonajes(respuesta.data.results)
+        // })()
+        props.traerTodos();
     }, [])
 
     const imagesTabla = (rowData: any) => {
@@ -67,4 +68,4 @@ const mapStateToPros = (state: any)=>{
     return state.personajeReducer
 }
 
-export default connect(mapStateToPros, null)(Personajes)
+export default connect(mapStateToPros, personajeActions)(Personajes)
