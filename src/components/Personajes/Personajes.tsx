@@ -18,36 +18,69 @@ function Personajes(props: any) {
     }
 
     const accionTabla = (rowData: any) => {
-        return <button className='btn btn-primary' onClick={()=> handlerAccion(rowData)}> accion </button>
+        return <button className='btn btn-primary' onClick={() => handlerAccion(rowData)}> accion </button>
     }
+
+    // const ponerContenido = () => {
+    //     if (props.cargando) {
+    //         return <h1>Cargando</h1>
+    //     }
+    //     return (
+    //         <div className="row">
+    //             <div className="col-sm-2"/>
+    //             <div className="col-sm-8">
+    //                 <div className="card">
+    //                     <DataTable value={props.personajes}
+    //                                paginator
+    //                                rows={10}
+    //                                totalRecords={props.personajes.length}
+    //                     >
+    //                         <Column field="image" header="Ilustracion" body={imagesTabla}/>
+    //                         <Column field="name" header="Nombre"/>
+    //                         <Column field="gender" header="Genero"/>
+    //                         <Column field="species" header="Especie"/>
+    //                         <Column field="status" header="Estado"/>
+    //                         <Column field="id" header="Acciones" body={accionTabla}/>
+    //                     </DataTable>
+    //                 </div>
+    //             </div>
+    //             <div className="col-sm-2"/>
+    //         </div>
+    //     )
+    // }
 
     console.log(props)
 
     return (
-        <div className="row">
-            <div className="col-sm-2"/>
-            <div className="col-sm-8">
-                <div className="card">
-                    <DataTable value={props.personajes}
-                               paginator
-                               rows={10}
-                               totalRecords={props.personajes.length}
-                    >
-                        <Column field="image" header="Ilustracion" body={imagesTabla}/>
-                        <Column field="name" header="Nombre"/>
-                        <Column field="gender" header="Genero"/>
-                        <Column field="species" header="Especie"/>
-                        <Column field="status" header="Estado"/>
-                        <Column field="id" header="Acciones" body={accionTabla}/>
-                    </DataTable>
+        <div>
+            {props.cargando ?
+                <h1>Cargando</h1> :
+                <div className="row">
+                    <div className="col-sm-2"/>
+                    <div className="col-sm-8">
+                        <div className="card">
+                            <DataTable value={props.personajes}
+                                       paginator
+                                       rows={10}
+                                       totalRecords={props.personajes.length}
+                            >
+                                <Column field="image" header="Ilustracion" body={imagesTabla}/>
+                                <Column field="name" header="Nombre"/>
+                                <Column field="gender" header="Genero"/>
+                                <Column field="species" header="Especie"/>
+                                <Column field="status" header="Estado"/>
+                                <Column field="id" header="Acciones" body={accionTabla}/>
+                            </DataTable>
+                        </div>
+                    </div>
+                    <div className="col-sm-2"/>
                 </div>
-            </div>
-            <div className="col-sm-2"/>
+            }
         </div>
     )
 }
 
-const mapStateToPros = (state: any)=>{
+const mapStateToPros = (state: any) => {
     return state.personajeReducer
 }
 
