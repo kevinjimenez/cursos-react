@@ -25,8 +25,7 @@ function Publicaciones(props: any) {
     return (
         <div>
             <h1>Publicaciones {id}</h1>
-
-            {/*<h2>Publicaciones de {props.personajes[id - 1].name}</h2>*/}
+            <h2>Publicaciones de {props.personajeReducer.personajes[id - 1].name}</h2>
         </div>
     )
 }
