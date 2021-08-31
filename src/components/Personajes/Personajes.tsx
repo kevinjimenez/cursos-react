@@ -34,7 +34,7 @@ function Personajes() {
     const imagesTabla = (rowData: any) => {
         console.log('rowData')
         console.log(rowData)
-        return <img src={rowData.image} alt="" width='40%'/>
+        return <img src={rowData.image} alt="" width='60%'/>
     }
 
     return (
@@ -47,11 +47,11 @@ function Personajes() {
                                rows={10}
                                totalRecords={personajes.length}
                     >
-                        <Column field="image" header="Image" body={imagesTabla}/>
-                        <Column field="name" header="Name"/>
-                        <Column field="gender" header="Price"/>
-                        <Column field="species" header="Category"/>
-                        <Column field="status" header="Reviews"/>
+                        <Column field="image" header="Ilustracion" body={imagesTabla}/>
+                        <Column field="name" header="Nombre"/>
+                        <Column field="gender" header="Genero"/>
+                        <Column field="species" header="Especie"/>
+                        <Column field="status" header="Estado"/>
                     </DataTable>
                 </div>
             </div>
