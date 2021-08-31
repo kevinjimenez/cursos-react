@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
 import {connect} from "react-redux";
@@ -7,24 +6,24 @@ import * as personajeActions from '../../actions/personajeActions'
 
 function Personajes(props: any) {
 
-    const [personajes, setPersonajes] = React.useState(
-        [
-            {
-                id: 1,
-                gender: 'haha',
-                name: '',
-                image: '',
-                species: '',
-                status: '',
-                location: {
-                    name: ''
-                },
-                origin: {
-                    name: ''
-                }
-            }
-        ]
-    )
+    // const [personajes, setPersonajes] = React.useState(
+    //     [
+    //         {
+    //             id: 1,
+    //             gender: 'haha',
+    //             name: '',
+    //             image: '',
+    //             species: '',
+    //             status: '',
+    //             location: {
+    //                 name: ''
+    //             },
+    //             origin: {
+    //                 name: ''
+    //             }
+    //         }
+    //     ]
+    // )
 
     React.useEffect(() => {
         // (async () => {
@@ -46,10 +45,10 @@ function Personajes(props: any) {
             <div className="col-sm-2"/>
             <div className="col-sm-8">
                 <div className="card">
-                    <DataTable value={personajes}
+                    <DataTable value={props.personajes}
                                paginator
                                rows={10}
-                               totalRecords={personajes.length}
+                               totalRecords={props.personajes.length}
                     >
                         <Column field="image" header="Ilustracion" body={imagesTabla}/>
                         <Column field="name" header="Nombre"/>

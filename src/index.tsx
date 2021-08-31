@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {Rutas} from "./routes/Rutas";
-import {createStore} from "redux";
-import reducers from "./reducers/reducers";
+import {createStore, applyMiddleware} from "redux";
+import ReduxThunk from 'redux-thunk';
 import {Provider} from "react-redux";
+
+import reducers from "./reducers/reducers";
 
 const store = createStore(
     reducers,
-    {}
+    {},
+    applyMiddleware(ReduxThunk)
 )
 
 ReactDOM.render(

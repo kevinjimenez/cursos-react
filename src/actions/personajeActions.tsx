@@ -1,6 +1,9 @@
-export const traerTodos = () => (dispatch: any) => {
+import axios from "axios";
+
+export const traerTodos = () => async (dispatch: any) => {
+    const respuesta = await axios.get('https://rickandmortyapi.com/api/character')
     dispatch({
         type: 'GET_PERSONAJES',
-        payload: [1,2,3]
+        payload: respuesta.data.results
     })
 }
