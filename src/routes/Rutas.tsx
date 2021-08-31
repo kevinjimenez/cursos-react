@@ -7,6 +7,7 @@ import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css";
 import Personajes from "../components/Personajes/Personajes";
 import {Tareas} from "../components/Tareas/Tareas";
+import Publicaciones from "../components/Publicaciones/Publicaciones";
 
 function Rutas() {
     return(
@@ -15,6 +16,7 @@ function Rutas() {
             <Switch>
                 <Route exact path='/' component={Personajes}/>
                 <Route exact path='/tareas' component={Tareas}/>
+                <Route exact path='/publicaciones/:id' component={Publicaciones}/>
             </Switch>
         </BrowserRouter>
     )
