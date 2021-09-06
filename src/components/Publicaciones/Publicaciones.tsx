@@ -10,16 +10,13 @@ function Publicaciones(props: any) {
   React.useEffect(() => {
     if (!props.personajeReducer.personajes.length) {
       console.log('entre')
-      const aaa = async () => {
+      const getPersonajes = async () => {
         await props.traerTodosPersonajes();
       };
-      aaa();
+      getPersonajes();
     }
-    const bbb = async () => {
-      console.log(id);
-      await props.publicaionezTraerPorUsuario(id);
-    };
-    bbb();
+
+    props.publicaionezTraerPorUsuario(id)
   }, []);
 
   console.log(props);

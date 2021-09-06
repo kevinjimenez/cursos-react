@@ -8,7 +8,9 @@ import Tabla from "../Tabla";
 function Personajes(props: any) {
 
     React.useEffect(() => {
-        props.traerTodos();
+        if(!props?.personajes?.length){
+            props.traerTodos();
+        }
     }, [])
 
     // const imagesTabla = (rowData: any) => {
