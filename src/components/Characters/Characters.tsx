@@ -1,6 +1,7 @@
 import React from "react";
 import './Characters.scss'
 import axios from "axios";
+import {Search} from "../Search/Search";
 
 const initialState = {
     favorites: []
@@ -45,9 +46,15 @@ function Characters() {
     //     setSearch(event.target.value);
     // }
 
-    const handleSearch = () => {
-        setSearch(searchInput.current.value);
-    }
+
+    // const handleSearch = () => {
+    //     setSearch(searchInput.current.value);
+    // }
+
+    // uso de use callback
+    const handleSearch = React.useCallback(() => {
+        setSearch(searchInput.current.value)
+    }, [])
 
     // const filterCharacters = characters.filter((item: any)=>{
     //     return item.name.toLowerCase().includes(search.toLowerCase());
@@ -68,13 +75,16 @@ function Characters() {
                 </li>
             ))}
 
-            <div className='Search'>
-                <input type="text"
-                       className='btn btn-outline-secondary'
-                       value={search}
-                       ref={searchInput}
-                       onChange={handleSearch}/>
-            </div>
+            {/*<div className='Search'>*/}
+            {/*    <input type="text"*/}
+            {/*           className='btn btn-outline-secondary'*/}
+            {/*           value={search}*/}
+            {/*           ref={searchInput}*/}
+            {/*           onChange={handleSearch}/>*/}
+            {/*</div>*/}
+            <Search search={search}
+                    searchInput={searchInput}
+                    handleSearch={handleSearch}/>
 
             {filterCharacters.map((character: any) => (
                 <div className='col-sm-4' key={character.id}>
