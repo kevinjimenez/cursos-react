@@ -22,6 +22,8 @@ function Characters() {
 
     const [characters, setCharacters] = React.useState([]);
     const [favorites, dispatch] = React.useReducer(favoriteReducer, initialState);
+    const [search, setSearch] = React.useState('');
+    const searchInput = React.useRef<any>(null)
 
     React.useEffect(() => {
         axios.get('https://rickandmortyapi.com/api/character')
@@ -38,15 +40,43 @@ function Characters() {
         })
     }
 
+    // forma tradicional sin hook
+    // const handleSearch = (event: any) => {
+    //     setSearch(event.target.value);
+    // }
+
+    const handleSearch = () => {
+        setSearch(searchInput.current.value);
+    }
+
+    // const filterCharacters = characters.filter((item: any)=>{
+    //     return item.name.toLowerCase().includes(search.toLowerCase());
+    // })
+
+    const filterCharacters = React.useMemo(() =>
+        characters.filter((item: any) => {
+            return item.name.toLowerCase().includes(search.toLowerCase());
+        }), [characters, search]
+    )
+
+
     return (
         <>
-            {favorites.favorites.map((item: any)=>(
+            {favorites.favorites.map((item: any) => (
                 <li key={item.id}>
                     {item.name}
                 </li>
             ))}
 
-            {characters.map((character: any) => (
+            <div className='Search'>
+                <input type="text"
+                       className='btn btn-outline-secondary'
+                       value={search}
+                       ref={searchInput}
+                       onChange={handleSearch}/>
+            </div>
+
+            {filterCharacters.map((character: any) => (
                 <div className='col-sm-4' key={character.id}>
                     <div className="card border-secondary mb-3"
                          style={{maxWidth: '18rem'}}>
