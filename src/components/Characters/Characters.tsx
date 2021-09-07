@@ -2,10 +2,12 @@ import React from "react";
 import './Characters.scss'
 import axios from "axios";
 import {Search} from "../Search/Search";
+import {useCharacter} from "../../hooks/useCharacter";
 
 const initialState = {
     favorites: []
 }
+const API = 'https://rickandmortyapi.com/api/character';
 
 const favoriteReducer = (state: any, action: any) => {
     switch (action.type) {
@@ -21,18 +23,19 @@ const favoriteReducer = (state: any, action: any) => {
 
 function Characters() {
 
-    const [characters, setCharacters] = React.useState([]);
+    // const [characters, setCharacters] = React.useState([]);
+    const characters = useCharacter(API);
     const [favorites, dispatch] = React.useReducer(favoriteReducer, initialState);
     const [search, setSearch] = React.useState('');
     const searchInput = React.useRef<any>(null)
 
-    React.useEffect(() => {
-        axios.get('https://rickandmortyapi.com/api/character')
-            .then(respuesta => {
-                console.log(respuesta.data.results)
-                setCharacters(respuesta.data.results)
-            })
-    }, [])
+    // React.useEffect(() => {
+    //     axios.get('https://rickandmortyapi.com/api/character')
+    //         .then(respuesta => {
+    //             console.log(respuesta.data.results)
+    //             setCharacters(respuesta.data.results)
+    //         })
+    // }, [])
 
     const handleClick = (favorite: any) => {
         dispatch({
