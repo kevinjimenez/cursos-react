@@ -6,21 +6,26 @@ function Checkout() {
             <div className="row">
                 <div className="col-sm-6">
                     <h3>Listar pedido</h3>
-                    <div>
-                        <div>
+                    <div className="row text-center">
+                        <div className="col-sm-6">
                             <h4>Item name</h4>
                             <span>
                                 $10
                             </span>
                         </div>
-                        <button className='btn btn-outline-danger'>Eliminar</button>
+                        <div className="col-sm-6">
+                            <span className="badge bg-primary">Eliminar</span>
+                            {/*<button className='btn btn-outline-danger'>Eliminar</button>*/}
+                        </div>
                     </div>
                 </div>
-                <div className="col-sm-6">
+                <div className="col-sm-6 text-center">
                     <h3>Precio total: $ 10</h3>
-                    <button className='btn btn-outline-success'>
-                        Continuar pedido
-                    </button>
+                    <div className="d-grid gap-2">
+                        <button className='btn btn-outline-success'>
+                            Continuar pedido
+                        </button>
+                    </div>
                 </div>
             </div>
         </>
