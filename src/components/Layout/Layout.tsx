@@ -3,11 +3,12 @@ import {Header} from "../Header/Header";
 import {Footer} from "../Footer/Footer";
 
 function Layout({children}: any) {
-    return(
+    return (
         <>
             <Header/>
-            <h1>Layout</h1>
-            {children}
+            <div className='container'>
+                {children}
+            </div>
             <Footer/>
         </>
     )

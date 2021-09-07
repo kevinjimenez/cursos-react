@@ -8,7 +8,7 @@ function Home() {
     const productoos = productos.products as any[];
     // console.log(products)
     return (
-        <div>
+        <div className='row'>
             <Products products={productoos}/>
         </div>
     )
