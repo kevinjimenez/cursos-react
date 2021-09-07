@@ -1,6 +1,15 @@
 import React from "react";
 
-function Information() {
+function Information(props: any) {
+
+    const handleClickPagar = () =>{
+        props.history.push('/checkout/payment');
+    }
+
+    const handleClickRegresar = () =>{
+        props.history.push('/checkout');
+    }
+
     return (
         <>
             <div className="row">
@@ -20,13 +29,13 @@ function Information() {
                     <div className="row">
                         <div className="col-sm-4">
                             <div className="d-grid gap-2">
-                                <button className='btn btn-outline-info'>Regresar</button>
+                                <button className='btn btn-outline-info' onClick={handleClickRegresar}>Regresar</button>
                             </div>
                         </div>
                         <div className="col-sm-4"/>
                         <div className="col-sm-4">
                             <div className="d-grid gap-2">
-                                <button className='btn btn-outline-info'>Pagar</button>
+                                <button className='btn btn-outline-info' onClick={handleClickPagar}>Pagar</button>
                             </div>
                         </div>
                     </div>
