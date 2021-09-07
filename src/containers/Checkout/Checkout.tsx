@@ -1,6 +1,21 @@
-import React from "react";
+import React, {useContext} from "react";
+import {AppContext} from "../../context/AppContext";
 
 function Checkout(props: any) {
+
+    // @ts-ignore
+    const {state, removeToCart} = useContext(AppContext)
+    const {cart} = state
+
+    const handleRemove = (product: any) => () => {
+        removeToCart(product)
+    }
+
+    const handleSumTotal = (product: any) => () => {
+        const reducer = (acumulador: number, currentValue: any) => acumulador + currentValue.price
+        const sum = cart.reduce(reducer, 0);
+        return sum;
+    }
 
     const handleClick = () => {
         props.history.push('/checkout/information');

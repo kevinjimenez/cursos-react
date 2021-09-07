@@ -1,7 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import {Link} from 'react-router-dom'
+import {AppContext} from "../../context/AppContext";
 
 function Header() {
+
+    // @ts-ignore
+    const { state } = useContext(AppContext);
+    const { cart } = state;
+    console.log(cart)
+
     return (
         <>
             <nav className="navbar navbar-light bg-light">
@@ -13,9 +20,8 @@ function Header() {
                     </a>
                     <div className="d-flex">
                         <Link to='/checkout'>
-                            <a >
                                 Checkout
-                            </a>
+                                {cart.length > 0 && <div className="Header-alert">{cart.length}</div>}
                         </Link>
                     </div>
                 </div>

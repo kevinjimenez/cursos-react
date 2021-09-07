@@ -1,6 +1,6 @@
 import React from "react";
 
-function Product({product}: any) {
+function Product({product, handleAddToCart}: any) {
     return (
         <>
             <div className="row">
@@ -26,10 +26,11 @@ function Product({product}: any) {
                 </div>
                 <div className="col-sm-12">
                     <div className="d-grid gap-2">
-                        <button className='btn btn-outline-info'>
-                            Compara
+                        <button className='btn btn-outline-info'
+                                onClick={handleAddToCart(product)}>
+                            Comprar
                         </button>
-                    </div>
+                    </div>product
                 </div>
             </div>
         </>
