@@ -1,5 +1,6 @@
 import React from "react";
 import {AppContext} from "../../context/AppContext";
+import {useHistory} from 'react-router-dom'
 
 function Information(props: any) {
 
@@ -7,6 +8,7 @@ function Information(props: any) {
     const {state, addToBuyer} = React.useContext(AppContext);
     const form = React.useRef(null);
     const {cart} = state;
+    const history = useHistory();
 
     const handleSubmit = ()=>{
         // @ts-ignore
@@ -23,6 +25,7 @@ function Information(props: any) {
             phone: formData.get('phone'),
         }
         addToBuyer(buyer)
+        history.push('/checkout/payment')
     }
 
     const handleClickPagar = () =>{
