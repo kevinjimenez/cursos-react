@@ -1,4 +1,5 @@
 export  const DATOS_PRUEBA ={
+    buyer: [],
     cart: [],
     products: [
         {

@@ -20,9 +20,18 @@ function useInitialState() {
         })
     }
 
+    const addToBuyer = (buyer: any) => {
+        setState({
+            ...state,
+            // @ts-ignore
+            buyer: [...state.buyer, buyer]
+        })
+    }
+
     return {
         addToCart,
         removeToCart,
+        addToBuyer,
         state
     }
 }

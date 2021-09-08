@@ -1,6 +1,29 @@
 import React from "react";
+import {AppContext} from "../../context/AppContext";
 
 function Information(props: any) {
+
+    // @ts-ignore
+    const {state, addToBuyer} = React.useContext(AppContext);
+    const form = React.useRef(null);
+    const {cart} = state;
+
+    const handleSubmit = ()=>{
+        // @ts-ignore
+        const formData = new FormData(form.current)
+        const buyer = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            address: formData.get('address'),
+            apto: formData.get('apto'),
+            city: formData.get('city'),
+            country: formData.get('country'),
+            state: formData.get('state'),
+            cp: formData.get('cp'),
+            phone: formData.get('phone'),
+        }
+        addToBuyer(buyer)
+    }
 
     const handleClickPagar = () =>{
         props.history.push('/checkout/payment');
@@ -15,7 +38,7 @@ function Information(props: any) {
             <div className="row">
                 <div className="col-sm-6 text-center">
                     <h2>Informacion de contacto</h2>
-                    <form action="">
+                    <form ref={form}>
                         <input type="text" className="form-control" placeholder='Nombre completo' name='name'/>
                         <input type="email" className="form-control" placeholder='Correo electronico' name='email'/>
                         <input type="text" className="form-control" placeholder='Direccion' name='address'/>
@@ -35,22 +58,24 @@ function Information(props: any) {
                         <div className="col-sm-4"/>
                         <div className="col-sm-4">
                             <div className="d-grid gap-2">
-                                <button className='btn btn-outline-info' onClick={handleClickPagar}>Pagar</button>
+                                <button className='btn btn-outline-info' onClick={handleSubmit}>Pagar</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="col-sm-6">
                     <h3>Pedido</h3>
-                    <div className="row">
-                        <div className="col-sm-4">
-                            <h4>Item name</h4>
+                    {cart.map((item: any)=>(
+                        <div className="row" key={item.id}>
+                            <div className="col-sm-4">
+                                <h4>{item.title}</h4>
+                            </div>
+                            <div className="col-sm-4"/>
+                            <div className="col-sm-4">
+                                <span>$ {item.price}</span>
+                            </div>
                         </div>
-                        <div className="col-sm-4"/>
-                        <div className="col-sm-4">
-                            <span>$ 10</span>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </>
