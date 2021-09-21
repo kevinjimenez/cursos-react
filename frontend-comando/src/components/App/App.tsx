@@ -1,4 +1,5 @@
 import { GlobalStyle } from '../../GlobalStyles';
+import { ListOfPhotoCard } from '../../ListOfPhotoCard/ListOfPhotoCard';
 import {ListOfCategories} from '../ListOfCategories/ListOfCategories'
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
     <GlobalStyle />
     <ListOfCategories />
+    <ListOfPhotoCard />
     </>
   );
 }
