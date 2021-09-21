@@ -1,12 +1,11 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Category } from '../Category/Category';
+import { GlobalStyle } from '../../GlobalStyles';
+import {ListOfCategories} from '../ListOfCategories/ListOfCategories'
 
 function App() {
   return (
     <>
-    <Category />
+    <GlobalStyle />
+    <ListOfCategories />
     </>
   );
 }
