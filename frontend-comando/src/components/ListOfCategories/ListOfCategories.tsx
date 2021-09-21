@@ -1,12 +1,13 @@
 import { Category } from "../Category/Category";
 import { Item, List } from "./styles";
+import {categories} from '../../db.json'
 
 const ListOfCategories = () => {
   return (
     <List>
-      {[1, 2, 3, 4].map((item: number) => (
-        <Item key={item}>
-          <Category />
+      {categories.map((item: any) => (
+        <Item key={item.id} >
+          <Category {...item}/>
         </Item>
       ))}
     </List>
