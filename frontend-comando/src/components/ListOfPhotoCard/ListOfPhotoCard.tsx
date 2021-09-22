@@ -15,16 +15,16 @@ query getPhotos {
 }
 `)
 
-const ListOfPhotoCardComponent = (props: any)=>{
-    console.log(props);
-    
+const ListOfPhotoCardComponent = ({ data: { photos = [] } } = {data: {photos: []}})=>{
+
     return (
         <ul>
         {
-            [1,2,3,4,5,6,7,8].map((card: any)=><PhotoCard key={card} id={card}/>)
+            photos.map((photo: any)=><PhotoCard key={photo.id} {...photo}/>)
         }
         </ul>
     )
 }
 
+//@ts-ignore
 export const ListOfPhotoCard = withPhotos(ListOfPhotoCardComponent)
