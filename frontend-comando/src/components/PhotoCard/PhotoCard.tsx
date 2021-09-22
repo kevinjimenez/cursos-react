@@ -1,6 +1,6 @@
 import React from "react";
 import { Article, Button, Img, ImgWrapper } from "./styles";
-import { MdFavoriteBorder } from "react-icons/md";
+import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
 const PhotoCard = ({
   id = 1,
   likes = 0,
@@ -10,23 +10,51 @@ const PhotoCard = ({
   likes?: number;
   src?: string;
 }) => {
+    const key = `like-${id}`
   const [show, setShow] = React.useState(false);
+  const [liked, setLiked] = React.useState(() => {
+    try {
+      const like = localStorage.getItem(key);
+      return like;
+    } catch (error) {
+      console.error(error);
+      return false;
+    }
+  });
+  console.log("liked", liked);
+
   const elemento = React.useRef(null);
 
   React.useEffect(() => {
-    //
-    const observer = new window.IntersectionObserver((entries) => {
-      const { isIntersecting } = entries[0];
-      console.log({isIntersecting});
-      
-      if (isIntersecting) {
-        setShow(true);
-        observer.disconnect();
-      }
+    Promise.resolve(
+      typeof window.IntersectionObserver !== "undefined"
+        ? window.IntersectionObserver
+        : //@ts-ignore
+          import("intersection-observer")
+    ).then(() => {
+      const observer = new window.IntersectionObserver(function (entries) {
+        const { isIntersecting } = entries[0];
+        if (isIntersecting) {
+          setShow(true);
+          observer.disconnect();
+        }
+      });
+      //@ts-ignore
+      observer.observe(elemento.current);
     });
-    //@ts-ignore
-    observer.observe(elemento.current);
+    // sin un fecth de api
   }, [elemento]);
+
+  const Icon = liked ? MdFavorite : MdFavoriteBorder;
+
+  const setLocalStorage = (value: any) => {
+    try {
+      localStorage.setItem(key, value);
+      setLiked(value);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <Article ref={elemento}>
@@ -37,8 +65,8 @@ const PhotoCard = ({
               <Img src={src} alt="" />
             </ImgWrapper>
           </a>
-          <Button>
-            <MdFavoriteBorder size="32px" /> {likes} likes!
+          <Button onClick={() => setLocalStorage(!liked)}>
+            <Icon size="32px" /> {likes} likes!
           </Button>
         </>
       )}
