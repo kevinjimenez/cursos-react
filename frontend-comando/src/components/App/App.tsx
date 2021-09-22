@@ -1,4 +1,5 @@
 import { ListOfPhotoCards } from "../../containers/ListOfPhotoCard";
+import { PhotoCardWithQuery } from "../../containers/PhotoCardWithQuery";
 import { GlobalStyle } from "../../styles/GlobalStyles";
 import { ListOfCategories } from "../ListOfCategories/ListOfCategories";
 import { Logo } from "../Logo/Logo";
@@ -13,7 +14,8 @@ export const App = () => {
       <GlobalStyle />
       <Logo />
       {detailId ? (
-        <h1>Detail id</h1>
+        // @ts-ignore 
+        <PhotoCardWithQuery id={detailId}/>
       ) : (
         <>
           <ListOfCategories />
