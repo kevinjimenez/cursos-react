@@ -9,7 +9,8 @@ function App() {
     <GlobalStyle />
     <Logo/>
     <ListOfCategories />
-    <ListOfPhotoCard />
+    {/* @ts-ignore */}
+    <ListOfPhotoCard categoryId={1}/>
     </>
   );
 }
