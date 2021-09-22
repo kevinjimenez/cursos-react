@@ -1,8 +1,8 @@
-import React from "react";
-import { Article, Button, Img, ImgWrapper } from "./styles";
-import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
+import { Article, Img, ImgWrapper } from "./styles";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { useNearScreen } from "../../hooks/useNearScreen";
+import { FavButton } from "../FavButton/FavButton";
+import { ToggleLikeMutation } from "../../containers/ToggleLikeMutation";
 const PhotoCard = ({
   id = 1,
   likes = 0,
@@ -14,7 +14,8 @@ const PhotoCard = ({
 }) => {
   const key = `like-${id}`;
   const [liked, setLiked] = useLocalStorage(key, false);
-  const [show, elemento] = useNearScreen()
+  const [show, elemento] = useNearScreen();
+
   //   const [show, setShow] = React.useState(false);
   //   const [liked, setLiked] = React.useState(() => {
   //     try {
@@ -49,8 +50,6 @@ const PhotoCard = ({
   //     // sin un fecth de api
   //   }, [elemento]);
 
-  const Icon = liked ? MdFavorite : MdFavoriteBorder;
-
   //   const setLocalStorage = (value: any) => {
   //     try {
   //       localStorage.setItem(key, value);
@@ -59,6 +58,8 @@ const PhotoCard = ({
   //       console.error(error);
   //     }
   //   };
+
+  // const handleFavClick = () => setLiked(!liked);
 
   return (
     <Article ref={elemento}>
@@ -69,9 +70,33 @@ const PhotoCard = ({
               <Img src={src} alt="" />
             </ImgWrapper>
           </a>
-          <Button onClick={() => setLiked(!liked)}>
+          <ToggleLikeMutation>
+            {
+              
+              (toggleLike: any) => {
+                const handleFavClick = () => {
+                  !liked &&
+                    toggleLike({
+                      variables: {
+                        input: { id },
+                      },
+                    });
+
+                  setLiked(!liked);
+                };
+
+                return <FavButton
+                  liked={liked}
+                  likes={likes}
+                  onClick={handleFavClick}
+                />;
+              }
+            }
+          </ToggleLikeMutation>
+
+          {/* <Button onClick={() => setLiked(!liked)}>
             <Icon size="32px" /> {likes} likes!
-          </Button>
+          </Button> */}
         </>
       )}
     </Article>

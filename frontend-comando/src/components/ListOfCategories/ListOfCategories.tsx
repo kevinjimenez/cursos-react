@@ -1,7 +1,7 @@
 import React from "react";
 import { Category } from "../Category/Category";
 import { Item, List } from "./styles";
-import axios from "axios";
+// import axios from "axios";
 import { useCategoriesData } from "../../hooks/useCategoriesData";
 
 const ListOfCategories = () => {
