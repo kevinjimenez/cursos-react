@@ -64,7 +64,7 @@ const PhotoCard = ({
     <Article ref={elemento}>
       {show && (
         <>
-          <a href={`/detail/${id}`}>
+          <a href={`/?detail=${id}`}>
             <ImgWrapper>
               <Img src={src} alt="" />
             </ImgWrapper>
