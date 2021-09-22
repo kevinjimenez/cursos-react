@@ -1,7 +1,7 @@
-import { GlobalStyle } from '../../GlobalStyles';
+import { GlobalStyle } from '../../styles/GlobalStyles';
 import { ListOfPhotoCard } from '../../ListOfPhotoCard/ListOfPhotoCard';
 import {ListOfCategories} from '../ListOfCategories/ListOfCategories'
-import { Logo } from '../Logo';
+import { Logo } from '../Logo/Logo';
 
 function App() {
   return (
