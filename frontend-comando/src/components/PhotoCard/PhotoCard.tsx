@@ -73,7 +73,6 @@ const PhotoCard = ({
           </Link>
           <ToggleLikeMutation>
             {
-              
               (toggleLike: any) => {
                 const handleFavClick = () => {
                   !liked &&

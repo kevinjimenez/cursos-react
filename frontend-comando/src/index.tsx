@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import App from './components/App/App';
+import App from './App/App';
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from 'react-apollo'
 
