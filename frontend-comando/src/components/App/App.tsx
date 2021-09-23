@@ -1,8 +1,8 @@
-import { ListOfPhotoCards } from "../../containers/ListOfPhotoCard";
 import { PhotoCardWithQuery } from "../../containers/PhotoCardWithQuery";
+import { Home } from "../../pages/Home";
 import { GlobalStyle } from "../../styles/GlobalStyles";
-import { ListOfCategories } from "../ListOfCategories/ListOfCategories";
 import { Logo } from "../Logo/Logo";
+import {Router} from '@reach/router'
 
 export const App = () => {
   const urlParams = new window.URLSearchParams(window.location.search);
@@ -14,14 +14,15 @@ export const App = () => {
       <GlobalStyle />
       <Logo />
       {detailId ? (
-        // @ts-ignore 
-        <PhotoCardWithQuery id={detailId}/>
+        // @ts-ignore
+        <PhotoCardWithQuery id={detailId} />
       ) : (
-        <>
-          <ListOfCategories />
-          {/* @ts-ignore */}
-          <ListOfPhotoCards categoryId={1} />
-        </>
+        <Router>
+          {/* @ts-ignore  */}
+          <Home path="/" />
+          {/* @ts-ignore  */}
+          <Home path="/pet/:id" />
+        </Router>
       )}
     </>
   );
