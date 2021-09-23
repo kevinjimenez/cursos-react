@@ -3,6 +3,7 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { FavButton } from "../FavButton/FavButton";
 import { ToggleLikeMutation } from "../../containers/ToggleLikeMutation";
+import { Link } from "@reach/router";
 const PhotoCard = ({
   id = 1,
   likes = 0,
@@ -65,11 +66,11 @@ const PhotoCard = ({
     <Article ref={elemento}>
       {show && (
         <>
-          <a href={`/?detail=${id}`}>
+          <Link to={`/detail/${id}`}>
             <ImgWrapper>
               <Img src={src} alt="" />
             </ImgWrapper>
-          </a>
+          </Link>
           <ToggleLikeMutation>
             {
               
