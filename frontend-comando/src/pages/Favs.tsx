@@ -2,7 +2,7 @@
 import { Layout } from "../components/Layout/Layout";
 import { FavsWithQuery } from "../containers/GetFavorities";
 
-export const Favs = () => {
+const Favs = () => {
   return (
       <Layout title="tus favs" subtitle=''>
         <FavsWithQuery />
@@ -13,3 +13,5 @@ export const Favs = () => {
       // <h1>FAVS</h1>
   );
 };
+
+export default Favs

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Suspense} from "react";
 // import { PhotoCardWithQuery } from "../../containers/PhotoCardWithQuery";
 import { Home } from "../pages/Home";
 import { GlobalStyle } from "../styles/GlobalStyles";
@@ -6,11 +6,15 @@ import { Logo } from "../components/Logo/Logo";
 import { Redirect, Router } from "@reach/router";
 import { Detail } from "../pages/Detail";
 import { NavBar } from "../components/NavBar/NavBar";
-import { Favs } from "../pages/Favs";
+// import { Favs } from "../pages/Favs";
+
 import { User } from "../pages/User";
 import { NotRegisteredUser } from "../pages/NotRegisteredUser";
 import { Context } from "../Context";
 import { NotFound } from "../pages/NotFound";
+
+//@ts-ignore
+const Favs = React.lazy(()=> import('../pages/Favs'))
 
 // render prop
 // const UserLogged = ({ children }: any) => {
@@ -26,7 +30,7 @@ export const App = () => {
   const { isAuth } = React.useContext(Context);
 
   return (
-    <>
+    <Suspense fallback={<></>}>
       <GlobalStyle />
       <Logo />
       <Router>
@@ -48,7 +52,7 @@ export const App = () => {
         <User path="/user" />
       </Router>
       <NavBar />
-    </>
+    </Suspense>
   );
 };
 
