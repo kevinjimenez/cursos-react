@@ -14,6 +14,11 @@ const Provider = ({ children }: any) => {
       setisAuth(true);
       sessionStorage.setItem('token', token)
     },
+    removeAuth: ()=>{
+      //@ts-ignore
+      setisAuth(false)
+      sessionStorage.removeItem('token')
+    }
   };
 
   return (
