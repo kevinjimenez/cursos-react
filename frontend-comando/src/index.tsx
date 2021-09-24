@@ -6,7 +6,18 @@ import Context from './Context';
 
 // inicializo el aplllo cliente para grapql
 const client = new ApolloClient({
-  uri: 'https://petgram-server-jrmfsd-okxluew9o.now.sh/graphql'
+  uri: 'https://petgram-server-jrmfsd-okxluew9o.now.sh/graphql',
+  request: (operation: any)=>{
+    const token = sessionStorage.getItem('token')
+    console.log(token, 'hahahaha');
+    
+    const authorization = token ? `Bearer ${token}` : '';
+    operation.setContext({
+      headers: {
+        authorization
+      }
+    })
+  }
 })
 
 
