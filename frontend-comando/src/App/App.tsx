@@ -1,14 +1,16 @@
+import React from "react";
 // import { PhotoCardWithQuery } from "../../containers/PhotoCardWithQuery";
 import { Home } from "../pages/Home";
 import { GlobalStyle } from "../styles/GlobalStyles";
 import { Logo } from "../components/Logo/Logo";
-import { Router } from "@reach/router";
+import { Redirect, Router } from "@reach/router";
 import { Detail } from "../pages/Detail";
 import { NavBar } from "../components/NavBar/NavBar";
 import { Favs } from "../pages/Favs";
 import { User } from "../pages/User";
 import { NotRegisteredUser } from "../pages/NotRegisteredUser";
-import Context from "../Context";
+import { Context } from "../Context";
+import { NotFound } from "../pages/NotFound";
 
 // render prop
 // const UserLogged = ({ children }: any) => {
@@ -20,37 +22,31 @@ export const App = () => {
   // const detailId = urlParams.get("detail");
   // console.log(detailId);
 
+  //@ts-ignore
+  const { isAuth } = React.useContext(Context);
+
   return (
     <>
       <GlobalStyle />
       <Logo />
       <Router>
         {/* @ts-ignore  */}
+        <NotFound default/>
+        {/* @ts-ignore  */}
         <Home path="/" />
         {/* @ts-ignore  */}
         <Home path="/pet/:id" />
         <Detail path="/detail/:detailId" />
+        {/* @ts-ignore  */}
+        {!isAuth && <NotRegisteredUser path="/login" />}
+        {!isAuth && <Redirect from="/favs" to="/login" />}
+        {!isAuth && <Redirect from="/user" to="/login" />}
+        {isAuth && <Redirect from="/login" to="/" />}
+        {/* @ts-ignore  */}
+        <Favs path="/favs" />
+        {/* @ts-ignore  */}
+        <User path="/user" />
       </Router>
-      <Context.Consumer>
-        {({ isAuth }: any) =>
-          isAuth ? (
-            <Router>
-              {/* @ts-ignore  */}
-              <Favs path="/favs" />
-              {/* @ts-ignore  */}
-              <User path="/user" />
-            </Router>
-          ) : (
-            <Router>
-              {/* @ts-ignore  */}
-              <NotRegisteredUser path="/favs" />
-              {/* @ts-ignore  */}
-              <NotRegisteredUser path="/user" />
-            </Router>
-          )
-        }
-      </Context.Consumer>
-
       <NavBar />
     </>
   );
