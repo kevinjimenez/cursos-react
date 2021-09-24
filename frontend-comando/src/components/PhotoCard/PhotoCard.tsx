@@ -1,20 +1,22 @@
 import { Article, Img, ImgWrapper } from "./styles";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
+// import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { useNearScreen } from "../../hooks/useNearScreen";
 import { FavButton } from "../FavButton/FavButton";
 import { ToggleLikeMutation } from "../../containers/ToggleLikeMutation";
 import { Link } from "@reach/router";
 const PhotoCard = ({
   id = 1,
+  liked,
   likes = 0,
   src = "https://res.cloudinary.com/midudev/image/upload/w_300/q_80/v1560262103/dogs.png",
 }: {
   id?: number;
+  liked: boolean;
   likes?: number;
   src?: string;
 }) => {
-  const key = `like-${id}`;
-  const [liked, setLiked] = useLocalStorage(key, false);
+  // const key = `like-${id}`;
+  // const [liked, setLiked] = useLocalStorage(key, false);
   const [show, elemento] = useNearScreen();
 
   //   const [show, setShow] = React.useState(false);
@@ -75,14 +77,13 @@ const PhotoCard = ({
             {
               (toggleLike: any) => {
                 const handleFavClick = () => {
-                  !liked &&
-                    toggleLike({
+                  toggleLike({
                       variables: {
                         input: { id },
                       },
                     });
 
-                  setLiked(!liked);
+                  // setLiked(!liked);
                 };
 
                 return <FavButton

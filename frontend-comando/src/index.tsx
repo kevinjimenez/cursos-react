@@ -17,6 +17,13 @@ const client = new ApolloClient({
         authorization
       }
     })
+  },
+  onError: (error: any)=>{
+    const {networkError} = error
+    if(networkError && networkError.result.code === 'invalid_token'){
+      sessionStorage.removeItem('token')
+      window.location.href = '/'
+    }
   }
 })
 
