@@ -20,10 +20,15 @@ export const NotRegisteredUser = () => {
                     const input = { email, password };
                     const variables = { input };
                     register({ variables })
-                      .then(activateIsAuth)
-                      .catch((e: any) => {
-                        console.log(e);
-                      });
+                    .then(({data}: any)=>{
+                      console.log("response de register");
+                      console.log(data);
+                      const {signup} = data
+                      activateIsAuth(signup)
+                    })
+                    .catch((e: any) => {
+                      console.log(e);
+                    });
                   };
                   const errorMsg =
                     error && "El usuario ya existe o hay algun problema";
@@ -46,7 +51,12 @@ export const NotRegisteredUser = () => {
                     const input = { email, password };
                     const variables = { input };
                     login({ variables })
-                      .then(activateIsAuth)
+                      .then(({data}: any)=>{
+                        console.log("response de login");
+                        console.log(data);
+                        const {login} = data
+                        activateIsAuth(login)
+                      })
                       .catch((e: any) => {
                         console.log(e);
                       });
