@@ -4,7 +4,7 @@ import { Item, List } from "./styles";
 // import axios from "axios";
 import { useCategoriesData } from "../../hooks/useCategoriesData";
 
-const ListOfCategories = () => {
+const ListOfCategoriesComponent = () => {
   // const [categories, setCategories] = React.useState([]);
   const [showFixed, setShowFixed] = React.useState(false);
   // React.useEffect(() => {
@@ -66,5 +66,7 @@ const ListOfCategories = () => {
     </>
   );
 };
+
+const ListOfCategories = React.memo(ListOfCategoriesComponent)
 
 export { ListOfCategories };
