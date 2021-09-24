@@ -1,4 +1,5 @@
 import { UserForm } from "../components/UserForm/UserForm";
+import { LoginMutation } from "../containers/LoginMutation";
 import { RegisterMutation } from "../containers/RegisterMutation";
 import Context from "../Context";
 
@@ -36,7 +37,32 @@ export const NotRegisteredUser = () => {
                   );
                 }}
               </RegisterMutation>
-              <UserForm onSubmit={activateIsAuth} title={"Iniciar sesion"} />
+              <LoginMutation>
+                {(login: any, { data, loading, error }: any) => {
+                  console.log(loading);
+                  console.log(error);
+                  console.log(data);
+                  const onSubmit = ({ email, password }: any) => {
+                    const input = { email, password };
+                    const variables = { input };
+                    login({ variables })
+                      .then(activateIsAuth)
+                      .catch((e: any) => {
+                        console.log(e);
+                      });
+                  };
+                  const errorMsg =
+                    error && "El contrasena no es correcta o el usuario no existe";
+                  return (
+                    <UserForm
+                      error={errorMsg}
+                      disable={loading}
+                      onSubmit={onSubmit}
+                      title={"Iniciar sesion"}
+                    />
+                  );
+                }}
+              </LoginMutation>
             </>
           );
         }
