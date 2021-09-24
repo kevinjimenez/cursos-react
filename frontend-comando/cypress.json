@@ -1,0 +1,6 @@
+{
+  "baseUrl": "https://petgram-platzi-danyel117.vercel.app/",
+  "chromeWebSegurity": false,
+  "viewportWidth": 500,
+  "viewportHeight": 800
+}
