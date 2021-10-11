@@ -11,11 +11,16 @@ import { AppUI } from "./AppUI";
 // }
 
 function App() {
+  // TODO: para poder compartir con la app
+  const [state, setState] = React.useState("");
+
   return (
-    <>
-      <TodoHeader />
-      <TodoList />
-    </>
+    <TodoProvider>
+      <>
+        <TodoHeader />
+        <TodoList />
+      </>
+    </TodoProvider>
   );
 }
 
@@ -37,6 +42,7 @@ function TodoList() {
 }
 
 function TodoCounter() {
+  const [state] = React.useContext(TodoProvider);
   return <p>TodoCounter</p>;
 }
 
