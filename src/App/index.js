@@ -1,6 +1,6 @@
 import React from "react";
-import { TodoProvider } from "../TodoContext";
-import { AppUI } from "./AppUI";
+// import { TodoProvider } from "../TodoContext";
+// import { AppUI } from "./AppUI";
 
 // function App() {
 //   // return (
@@ -12,45 +12,43 @@ import { AppUI } from "./AppUI";
 
 function App() {
   // TODO: para poder compartir con la app
-  const [state, setState] = React.useState("");
+  const [state, setState] = React.useState("estado compartido");
 
-  return (
-    <TodoProvider>
-      <>
-        <TodoHeader />
-        <TodoList />
-      </>
-    </TodoProvider>
-  );
-}
-
-function TodoHeader() {
   return (
     <>
-      <TodoCounter />
-      <TodoSearch />
+      <TodoHeader>
+        <TodoCounter />
+        <TodoSearch />
+      </TodoHeader>
+      <TodoList>
+        <TodoItem state={state}/>
+      </TodoList>
     </>
   );
 }
 
-function TodoList() {
+function TodoHeader({ children }) {
+  return <header>{children}</header>;
+}
+
+function TodoList({children}) {
   return (
-    <>
-      <TodoItem />
-    </>
+    <section className='TodoList-container'>
+      {children}
+    </section>
   );
 }
 
 function TodoCounter() {
-  const [state] = React.useContext(TodoProvider);
+  // const [state] = React.useContext(TodoProvider);
   return <p>TodoCounter</p>;
 }
 
 function TodoSearch() {
   return <p>TodoSearch</p>;
 }
-function TodoItem() {
-  return <p>TodoItem</p>;
+function TodoItem({state}) {
+  return <p>TodoItem: {state}</p>;
 }
 
 export default App;
